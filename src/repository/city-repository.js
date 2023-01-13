@@ -6,7 +6,8 @@ class CityRepository {
             const city = await City.create({ name });
             return city;
         } catch(error) {
-            throw {error};
+            console.log("Something went wrong in the repository layer");
+            throw { error };
         }
     }
 
@@ -18,6 +19,30 @@ class CityRepository {
                 }
             });
         } catch(error) {
+            console.log("Something went wrong in the repository layer");
+            throw { error };
+        }
+    }
+
+    async updateCity({cityId, data}) {
+        try {
+            const city = await City.Update(data, {
+                where: {
+                    id: cityId
+                }
+            });
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+            throw { error };
+        }
+    }
+
+    async getCity(cityId) {
+        try {
+            const city = await City.findByPk(cityId);
+            return city;
+        } catch(error) {
+            console.log("Something went wrong in the repository layer");
             throw { error };
         }
     }
