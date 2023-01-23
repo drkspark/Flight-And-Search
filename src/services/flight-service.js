@@ -1,5 +1,5 @@
-const {AirplaneRepository, FlightRepository} = require('../repository/index');
-const {compareTime} = require('../utils/helper');
+const { AirplaneRepository, FlightRepository } = require("../repository/index");
+const { compareTime } = require("../utils/helper");
 
 class FlightService {
     constructor() {
@@ -9,16 +9,21 @@ class FlightService {
     async createFlight(data) {
         try {
             if (!compareTime(data.arrivalTime, data.departureTime)) {
-                throw{error: "Arrival time can't be less than departure time"};
+                throw {
+                    error: "Arrival time can't be less than departure time",
+                };
             }
-            const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
+            const airplane = await this.airplaneRepository.getAirplane(
+                data.airplaneId
+            );
             const flight = await this.flightRepository.createFlight({
-                ...data, totalSeats: airplane.capacity
+                ...data,
+                totalSeats: airplane.capacity,
             });
             return flight;
         } catch (error) {
             console.log("Something went wrong at Service Layer");
-            throw(error);
+            throw error;
         }
     }
 
@@ -37,6 +42,6 @@ module.exports = FlightService;
  * price,
  * boardingGate,
  * totalSeats
- * 
+ *
  * ...obj :: ... is spread obj
  */
