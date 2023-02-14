@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    /**
+     * One City can have Many Airports i.e hasMany  
+     */
     static associate(models) {
       // We define the relationships between tables here
       this.hasMany(models.Airport, {

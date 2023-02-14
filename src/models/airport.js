@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
          * This method is not a part of Sequelize lifecycle.
          * The `models/index` file will call this method automatically.
          */
+        /**
+         * One Airport Can Belong to only One City i.e One-To-Many Relationship
+         */
         static associate(models) {
             // define association here
             this.belongsTo(models.City, {
